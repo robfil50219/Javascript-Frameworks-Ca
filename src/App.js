@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Homepage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
+import Homepage from "./pages/Homepage";
+import ProductPage from "./pages/Productpage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
