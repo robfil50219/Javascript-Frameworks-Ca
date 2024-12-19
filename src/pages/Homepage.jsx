@@ -42,7 +42,7 @@ const Homepage = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>ShopSphere</h1>
+      <h1>"Reach New Heights in Shopping with ShopSphere!"</h1>
       <div
         style={{
           display: "grid",

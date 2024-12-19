@@ -49,6 +49,24 @@ const Productpage = () => {
     return (total / ratings.length).toFixed(1);
   };
 
+  // Handle adding product to cart
+  const addToCart = (product) => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productInCart = existingCart.find((item) => item.id === product.id);
+
+    if (productInCart) {
+      // Update the quantity if product already in the cart
+      productInCart.quantity += 1;
+    } else {
+      // Add new product to cart
+      existingCart.push({ ...product, quantity: 1 });
+    }
+
+    // Save updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+    alert("Product added to cart!");
+  };
+
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Product not found.</p>;
@@ -91,7 +109,7 @@ const Productpage = () => {
 
           {/* Buy Now Button */}
           <button
-            onClick={() => alert("Product added to cart!")} // Handle the action when clicked
+            onClick={() => addToCart(product)}
             style={{
               display: "flex",
               alignItems: "center",
@@ -167,6 +185,7 @@ const Productpage = () => {
 };
 
 export default Productpage;
+
 
 
 
