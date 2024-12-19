@@ -14,17 +14,16 @@ const Homepage = () => {
         }
         const data = await response.json();
         console.log("API Response:", data); // Debugging
-        setProducts(data.data || []); 
+        setProducts(data.data || []); // Access products from the `data` field
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchProducts();
   }, []);
-  
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -47,8 +46,8 @@ const Homepage = () => {
             }}
           >
             <img
-              src={product.imageUrl}
-              alt={product.title}
+              src={product.image?.url || "https://via.placeholder.com/200"} 
+              alt={product.image?.alt || product.title || "Product Image"} 
               style={{ width: "100%", height: "auto" }}
             />
             <h3>{product.title}</h3>
@@ -60,7 +59,8 @@ const Homepage = () => {
                   ({Math.round(
                     ((product.price - product.discountedPrice) / product.price) *
                       100
-                  )}% off)
+                  )}
+                  % off)
                 </span>
               )}
             </p>
@@ -73,4 +73,5 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
 
