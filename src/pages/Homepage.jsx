@@ -13,19 +13,25 @@ const Homepage = () => {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        setProducts(data);
+        console.log("API Response:", data);
+        // Adjust based on actual data structure
+        setProducts(Array.isArray(data) ? data : data.products || []);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchProducts();
   }, []);
+  
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!Array.isArray(products) || products.length === 0) {
+    return <p>No products available.</p>;
+  }
 
   return (
     <div>
@@ -55,8 +61,7 @@ const Homepage = () => {
                   ({Math.round(
                     ((product.price - product.discountedPrice) / product.price) *
                       100
-                  )}
-                  % off)
+                  )}% off)
                 </span>
               )}
             </p>
@@ -69,3 +74,4 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
