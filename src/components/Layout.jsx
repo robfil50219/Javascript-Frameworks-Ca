@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {/* Header */}
       <header
         style={{
@@ -103,7 +103,7 @@ const Layout = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main style={{ padding: "20px" }}>{children}</main>
+      <main style={{ flexGrow: 1, padding: "20px" }}>{children}</main>
 
       {/* Footer */}
       <footer
@@ -112,6 +112,7 @@ const Layout = ({ children }) => {
           padding: "10px",
           color: "white",
           textAlign: "center",
+          marginTop: "auto", 
         }}
       >
         <p>© 2024 ShopSphere</p>
@@ -133,6 +134,7 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
 
 
 

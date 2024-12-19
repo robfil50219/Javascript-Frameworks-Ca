@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,6 @@ const Homepage = () => {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        console.log("Fetched Products:", data.data || []); // Log products
         setProducts(data.data || []); // Access products from the `data` field
       } catch (err) {
         setError(err.message);
@@ -42,7 +42,7 @@ const Homepage = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1> "Explore. Save. Thrive."</h1>
+      <h1>ShopSphere</h1>
       <div
         style={{
           display: "grid",
@@ -89,25 +89,22 @@ const Homepage = () => {
             <p style={{ fontSize: "1rem", color: "#555", margin: "10px 0" }}>
               {product.description}
             </p>
-            <p style={{ fontSize: "1rem", color: "#888", margin: "10px 0" }}>
-              Rating: {product.rating || "No ratings yet"}
-            </p>
-            <p style={{ fontSize: "0.9rem", color: "#777", margin: "10px 0" }}>
-              Tags: {product.tags?.join(", ") || "No tags available"}
-            </p>
-            <button
+            <Link
+              to={`/product/${product.id}`} // Link to the product page with its ID
               style={{
                 padding: "10px 20px",
                 backgroundColor: "#00A0A0",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
+                textDecoration: "none",
                 fontSize: "1rem",
+                display: "inline-block",
                 cursor: "pointer",
               }}
             >
               View Product
-            </button>
+            </Link>
           </div>
         ))}
       </div>
@@ -149,6 +146,7 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
 
 
 
