@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* Hide hamburger menu on larger screens */
+.hamburger-menu {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .menu-links {
+    display: block;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .menu-links {
+    display: none;
+  }
+}
