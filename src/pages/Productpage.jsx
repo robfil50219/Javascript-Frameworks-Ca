@@ -89,60 +89,85 @@ const Productpage = () => {
           )}
           <p>{product.description || "No description available."}</p>
 
-          {/* Ratings Section */}
-          <div style={{ marginTop: "20px" }}>
-            <h2>Average Rating: {calculateAverageRating()}</h2>
-            <form onSubmit={handleRatingSubmit} style={{ marginTop: "10px" }}>
-              <label htmlFor="rating">Your Rating (1-5): </label>
-              <input
-                type="number"
-                id="rating"
-                min="1"
-                max="5"
-                value={userRating}
-                onChange={(e) => setUserRating(Number(e.target.value))}
-                style={{
-                  width: "50px",
-                  textAlign: "center",
-                  marginRight: "10px",
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  padding: "5px 10px",
-                  backgroundColor: "#00A0A0",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-
-          {/* List of Ratings */}
-          {ratings.length > 0 && (
-            <div style={{ marginTop: "20px" }}>
-              <h3>Customer Ratings:</h3>
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                {ratings.map((r, index) => (
-                  <li key={index} style={{ marginBottom: "10px" }}>
-                    Rating: {r.rating} ⭐
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* Buy Now Button */}
+          <button
+            onClick={() => alert("Product added to cart!")} // Handle the action when clicked
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "10px 20px",
+              backgroundColor: "#00A0A0",
+              color: "white",
+              border: "none",
+              borderRadius: "30px",
+              cursor: "pointer",
+              marginTop: "20px",
+              fontSize: "16px",
+            }}
+          >
+            <i
+              className="fas fa-shopping-cart" // FontAwesome cart icon
+              style={{ marginRight: "10px", fontSize: "18px" }}
+            ></i>
+            Buy Now
+          </button>
         </div>
       </div>
+
+      {/* Ratings Section */}
+      <div style={{ marginTop: "20px" }}>
+        <h2>Average Rating: {calculateAverageRating()}</h2>
+        <form onSubmit={handleRatingSubmit} style={{ marginTop: "10px" }}>
+          <label htmlFor="rating">Your Rating (1-5): </label>
+          <input
+            type="number"
+            id="rating"
+            min="1"
+            max="5"
+            value={userRating}
+            onChange={(e) => setUserRating(Number(e.target.value))}
+            style={{
+              width: "50px",
+              textAlign: "center",
+              marginRight: "10px",
+            }}
+          />
+          <button
+            type="submit"
+            style={{
+              marginLeft: "10px",
+              padding: "5px 10px",
+              backgroundColor: "#00A0A0",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+
+      {/* List of Ratings */}
+      {ratings.length > 0 && (
+        <div style={{ marginTop: "20px" }}>
+          <h3>Customer Ratings:</h3>
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {ratings.map((r, index) => (
+              <li key={index} style={{ marginBottom: "10px" }}>
+                Rating: {r.rating} ⭐
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Productpage;
+
 
 
 
