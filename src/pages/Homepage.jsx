@@ -13,9 +13,8 @@ const Homepage = () => {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        console.log("API Response:", data);
-        // Adjust based on actual data structure
-        setProducts(Array.isArray(data) ? data : data.products || []);
+        console.log("API Response:", data); // Debugging
+        setProducts(data.data || []); 
       } catch (err) {
         setError(err.message);
       } finally {
