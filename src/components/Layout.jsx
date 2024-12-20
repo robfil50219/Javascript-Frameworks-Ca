@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header"; // Import Header component
+import Header from "../components/Header"; 
 
 const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);

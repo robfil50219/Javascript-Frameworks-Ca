@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
+import { Link } from "react-router-dom";  
 
 const Header = ({ setSearchQuery }) => {
   const [search, setSearch] = useState("");
-  const [cartCount, setCartCount] = useState(0); // Cart item count
-  const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
+  const [cartCount, setCartCount] = useState(0); 
+  const [menuOpen, setMenuOpen] = useState(false); 
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    setSearchQuery(e.target.value); // Pass the search query to parent
+    setSearchQuery(e.target.value); 
   };
 
   const toggleMenu = () => {
@@ -21,14 +21,14 @@ const Header = ({ setSearchQuery }) => {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",  // Space out the elements
+          justifyContent: "space-between",  
           width: "100%",
         }}
       >
-        {/* Logo (Far Left) */}
+       
         <h1 style={{ margin: 0, color: "white", flex: "none" }}>ShopSphere</h1>
 
-        {/* Search Bar (Center) */}
+        
         <div style={{ flex: "1", display: "flex", justifyContent: "center" }}>
           <input
             type="text"
@@ -44,7 +44,7 @@ const Header = ({ setSearchQuery }) => {
           />
         </div>
 
-        {/* Cart Icon and Hamburger Menu (Far Right) */}
+       
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {/* Cart Icon */}
           <Link
@@ -57,7 +57,7 @@ const Header = ({ setSearchQuery }) => {
               gap: "5px",
             }}
           >
-            <span style={{ fontSize: "24px" }}>🛒</span> {/* White Cart Icon */}
+            <span style={{ fontSize: "24px" }}>🛒</span> 
             {cartCount > 0 && (
               <span
                 style={{
@@ -67,8 +67,8 @@ const Header = ({ setSearchQuery }) => {
                   padding: "5px 10px",
                   fontSize: "14px",
                   position: "absolute",
-                  top: "-5px", // Positioning the count slightly above the cart icon
-                  right: "-5px", // Positioning the count slightly to the right
+                  top: "-5px", 
+                  right: "-5px",
                 }}
               >
                 {cartCount}
