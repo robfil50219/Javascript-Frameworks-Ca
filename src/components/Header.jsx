@@ -1,22 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";  
 
-const Header = ({ setSearchQuery }) => {
-  const [search, setSearch] = useState("");
-  const [cartCount, setCartCount] = useState(0); 
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false); 
-
-  // Load cart items from localStorage and update cart count
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalCartCount = savedCart.reduce((count, item) => count + item.quantity, 0);
-    setCartCount(totalCartCount);
-  }, []); // Runs once when the component is mounted
-
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    setSearchQuery(e.target.value); 
-  };
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -24,14 +10,7 @@ const Header = ({ setSearchQuery }) => {
 
   return (
     <header style={{ padding: "10px 20px", backgroundColor: "#00A0A0", position: "relative" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",  
-          width: "100%",
-        }}
-      >
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
         {/* Logo that links to the homepage */}
         <Link to="/" style={{ textDecoration: "none" }}>
           <h1 style={{ margin: 0, color: "white", flex: "none" }}>ShopSphere</h1>
@@ -50,23 +29,7 @@ const Header = ({ setSearchQuery }) => {
               position: "relative",  
             }}
           >
-            <span style={{ fontSize: "24px" }}>🛒</span>
-            {cartCount > 0 && (
-              <span
-                style={{
-                  backgroundColor: "rgba(255, 0, 0, 0.6)", 
-                  borderRadius: "50%",
-                  color: "white",
-                  padding: "3px 6px", 
-                  fontSize: "12px",  
-                  position: "absolute",
-                  top: "-5px", 
-                  right: "-5px",
-                }}
-              >
-                {cartCount}
-              </span>
-            )}
+            <span style={{ fontSize: "24px" }}>🛒</span> 
           </Link>
 
           {/* Hamburger Menu */}
@@ -113,6 +76,7 @@ const Header = ({ setSearchQuery }) => {
 };
 
 export default Header;
+
 
 
 
