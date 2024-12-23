@@ -28,21 +28,6 @@ const Header = ({ setSearchQuery }) => {
        
         <h1 style={{ margin: 0, color: "white", flex: "none" }}>ShopSphere</h1>
 
-        
-        <div style={{ flex: "1", display: "flex", justifyContent: "center" }}>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={handleSearchChange}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "5px",
-              border: "none",
-              width: "250px",
-            }}
-          />
-        </div>
 
        
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>

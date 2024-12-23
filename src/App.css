@@ -1,4 +1,4 @@
-
+/* Global styles */
 body,
 html {
   height: 100%;
@@ -6,18 +6,34 @@ html {
   font-family: Arial, sans-serif;
 }
 
-
 .layout-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-
-footer {
-  margin-top: auto; 
+.slogan {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333; /* Adjusted color */
 }
 
+/* Footer */
+footer {
+  margin-top: auto;
+  background-color: #00A0A0;
+  color: white;
+  padding: 10px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* App layout and logo */
 .App {
   text-align: center;
 }
@@ -33,8 +49,9 @@ footer {
   }
 }
 
+/* Header and navigation styles */
 .App-header {
-  background-color: #282c34;
+  background-color: #00A0A0; /* Header color */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -48,16 +65,7 @@ footer {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Hide hamburger menu on larger screens */
+/* Hamburger menu - hide on larger screens */
 .hamburger-menu {
   display: none;
 }
@@ -74,6 +82,13 @@ footer {
 
   .menu-links {
     display: block;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #0F4452;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
   }
 }
 
@@ -83,3 +98,49 @@ footer {
     display: none;
   }
 }
+
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  width: 250px;
+}
+
+/* Product list and cards */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.view-product-link {
+  color: #00A0A0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-product-link:hover {
+  text-decoration: underline;
+}
+

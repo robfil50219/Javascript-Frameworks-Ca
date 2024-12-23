@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; 
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState(""); // Local state for search input
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch("https://v2.api.noroff.dev/online-shop");
         const data = await response.json();
-        setProducts(data.data || []);
-        setFilteredProducts(data.data || []);
+        setProducts(data.data); // Set the products
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -21,64 +21,51 @@ const Homepage = () => {
     fetchProducts();
   }, []);
 
-  const handleSearchQuery = (query) => {
-    setSearchQuery(query);
-    const filtered = products.filter((product) =>
-      product.title.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  };
+  // Filter products based on the search query
+  const filteredProducts = products.filter((product) =>
+    product.title?.toLowerCase().includes(search.toLowerCase())
+  );
+
+  if (loading) return <p>Loading products...</p>;
 
   return (
     <div>
-      <h2>Shop our Products</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-        {filteredProducts.length === 0 ? (
-          <p>No products found</p>
-        ) : (
-          filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              style={{
-                border: "1px solid #ddd",
-                padding: "10px",
-                borderRadius: "5px",
-                width: "200px",
-              }}
-            >
-              <img
-                src={product.image?.url || "https://via.placeholder.com/300"}
-                alt={product.title}
-                style={{ width: "100%", height: "auto" }}
-              />
-              <h3>{product.title}</h3>
-              <p>Price: ${product.discountedPrice.toFixed(2)}</p>
+      <h1 className="slogan">Discover Your Next Favorite Product at ShopSphere</h1>
+      
+      {/* Search Bar */}
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)} 
+          className="search-bar-input" 
+        />
+      </div>
 
-              
-              <Link
-                to={`/product/${product.id}`}  
-                style={{
-                  display: "inline-block",
-                  padding: "10px",
-                  backgroundColor: "#00A0A0",
-                  color: "white",
-                  textDecoration: "none",
-                  textAlign: "center",
-                  borderRadius: "5px",
-                  marginTop: "10px",
-                }}
-              >
-                View Product
-              </Link>
-            </div>
-          ))
-        )}
+      <div className="product-list">
+        {filteredProducts.map((product) => (
+          <div key={product.id} className="product-card">
+            <img
+              src={product.image?.url}
+              alt={product.title}
+              className="product-image"
+            />
+            <h3>{product.title}</h3>
+            <p>Price: ${product.discountedPrice?.toFixed(2)}</p>
+            <Link to={`/product/${product.id}`}>View Product</Link>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default Homepage;
+
+
+
+
 
 
 
