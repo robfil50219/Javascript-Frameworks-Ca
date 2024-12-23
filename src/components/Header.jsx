@@ -17,22 +17,6 @@ const Header = () => {
           <h1 style={{ margin: 0 }}>ShopSphere</h1>
         </Link>
 
-        {/* Search Bar */}
-        <div style={{ flex: "1", display: "flex", justifyContent: "center" }}>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={handleSearchChange} // Handle search input change
-            style={{
-              padding: "8px 12px",
-              borderRadius: "5px",
-              border: "none",
-              width: "250px",
-            }}
-          />
-        </div>
-
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {/* Cart Icon */}
           <Link
