@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [customerName, setCustomerName] = useState("");
   const [address, setAddress] = useState("");
   const [creditCard, setCreditCard] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load cart items from localStorage on page load
@@ -39,8 +38,8 @@ const CartPage = () => {
 
   // Handle the checkout form submission
   const handleCheckout = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault(); // Prevent default form submission
+    setIsSubmitting(true); // Disable the button
 
     // Simulate sending order data (you can replace this with actual API call)
     const orderData = {
@@ -60,6 +59,7 @@ const CartPage = () => {
       // Reset the cart
       localStorage.removeItem("cart");
       setCartItems([]);
+      navigate("/checkout-success", { state: { orderData } });
     }, 2000);
   };
 
@@ -67,68 +67,63 @@ const CartPage = () => {
     <div style={{ padding: "20px" }}>
       <h1>Your Cart</h1>
 
-      {loading && <p>Loading cart...</p>}
-      {error && <p>Error: {error}</p>}
-
       {/* Display cart items */}
-      <div>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <div>
-            {cartItems.map((item) => (
-              <div
-                key={item.id}
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <div>
+          {cartItems.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "15px",
+                borderBottom: "1px solid #ddd",
+              }}
+            >
+              <div style={{ display: "flex", gap: "20px" }}>
+                <img
+                  src={item.image?.url || "https://via.placeholder.com/100"}
+                  alt={item.title}
+                  style={{ width: "100px", height: "auto", borderRadius: "5px" }}
+                />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <p>Price: ${item.discountedPrice.toFixed(2)}</p>
+                  <p>
+                    Quantity:{" "}
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => changeQuantity(item.id, Number(e.target.value))}
+                      min="1"
+                      style={{ width: "50px", textAlign: "center", marginLeft: "10px" }}
+                    />
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => removeItem(item.id)}
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "15px",
-                  borderBottom: "1px solid #ddd",
+                  backgroundColor: "#ff0000",
+                  color: "white",
+                  border: "none",
+                  padding: "10px",
+                  cursor: "pointer",
+                  borderRadius: "5px",
                 }}
               >
-                <div style={{ display: "flex", gap: "20px" }}>
-                  <img
-                    src={item.image?.url || "https://via.placeholder.com/100"}
-                    alt={item.title}
-                    style={{ width: "100px", height: "auto", borderRadius: "5px" }}
-                  />
-                  <div>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <p>Price: ${item.discountedPrice.toFixed(2)}</p>
-                    <p>
-                      Quantity:{" "}
-                      <input
-                        type="number"
-                        value={item.quantity}
-                        onChange={(e) => changeQuantity(item.id, Number(e.target.value))}
-                        min="1"
-                        style={{ width: "50px", textAlign: "center", marginLeft: "10px" }}
-                      />
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => removeItem(item.id)}
-                  style={{
-                    backgroundColor: "#ff0000",
-                    color: "white",
-                    border: "none",
-                    padding: "10px",
-                    cursor: "pointer",
-                    borderRadius: "5px",
-                  }}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <div style={{ marginTop: "20px", textAlign: "right" }}>
-              <h2>Total: ${calculateTotal()}</h2>
+                Remove
+              </button>
             </div>
+          ))}
+          <div style={{ marginTop: "20px", textAlign: "right" }}>
+            <h2>Total: ${calculateTotal()}</h2>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Checkout Form */}
       {cartItems.length > 0 && (
