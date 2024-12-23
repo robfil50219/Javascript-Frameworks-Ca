@@ -5,6 +5,8 @@ const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(""); // Local state for search input
+  const [currentPage, setCurrentPage] = useState(1); // Track current page
+  const productsPerPage = 20; // Display 20 products per page
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,6 +28,21 @@ const Homepage = () => {
     product.title?.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Paginate the products to display only 20 per page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(0, indexOfLastProduct);
+
+  // Handle the "Load More" button click
+  const loadMore = () => {
+    setCurrentPage(currentPage + 1); // Increment page number
+  };
+
+  // Handle the "Show Less" button click
+  const showLess = () => {
+    setCurrentPage(currentPage - 1); // Decrement page number
+  };
+
   if (loading) return <p>Loading products...</p>;
 
   return (
@@ -38,13 +55,13 @@ const Homepage = () => {
           type="text"
           placeholder="Search products..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)} 
-          className="search-bar-input" 
+          onChange={(e) => setSearch(e.target.value)} // Handle search input change
+          className="search-bar-input"
         />
       </div>
 
       <div className="product-list">
-        {filteredProducts.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product.id} className="product-card">
             <img
               src={product.image?.url}
@@ -57,11 +74,31 @@ const Homepage = () => {
           </div>
         ))}
       </div>
+
+      {/* Load More / Show Less Button */}
+      {filteredProducts.length > currentPage * productsPerPage && (
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button onClick={loadMore} className="load-more-button">
+            Load More
+          </button>
+        </div>
+      )}
+
+      {currentPage > 1 && (
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button onClick={showLess} className="show-less-button">
+            Show Less
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Homepage;
+
+
+
 
 
 
