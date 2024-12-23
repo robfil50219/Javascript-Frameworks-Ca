@@ -75,7 +75,7 @@ const Header = ({ setSearchQuery }) => {
             position: "absolute",
             top: "60px",
             right: "10px",
-            width: "200px", // Make sure the mobile menu has a defined width
+            width: "200px", 
           }}
         >
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
