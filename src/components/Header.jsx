@@ -21,8 +21,9 @@ const Header = ({ setSearchQuery }) => {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
         {/* Logo that links to the homepage */}
         <Link to="/" style={{ textDecoration: "none" }}>
-          <h1 style={{ margin: 0, color: "white", flex: "none" }}>ShopSphere</h1>
-        </Link>
+  <h1 style={{ margin: 0, color: "white", fontSize: "2.5rem", fontWeight: "bold" }}>ShopSphere</h1>
+</Link>
+
 
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {/* Cart Icon */}
@@ -34,7 +35,7 @@ const Header = ({ setSearchQuery }) => {
               textDecoration: "none",
               color: "white",
               gap: "5px",
-              position: "relative",  // Ensure the cart count is positioned relative to the cart icon
+              position: "relative",  
             }}
           >
             <span style={{ fontSize: "24px" }}>🛒</span>
