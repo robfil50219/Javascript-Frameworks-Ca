@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";  
 
-const Header = () => {
+const Header = ({ setSearchQuery }) => {
+  const [cartCount, setCartCount] = useState(0); 
   const [menuOpen, setMenuOpen] = useState(false); 
+
+  // Load cart items from localStorage and update cart count
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalCartCount = savedCart.reduce((count, item) => count + item.quantity, 0);
+    setCartCount(totalCartCount);
+  }, []); // Runs once when the component is mounted
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -26,10 +34,26 @@ const Header = () => {
               textDecoration: "none",
               color: "white",
               gap: "5px",
-              position: "relative",  
+              position: "relative",  // Ensure the cart count is positioned relative to the cart icon
             }}
           >
-            <span style={{ fontSize: "24px" }}>🛒</span> 
+            <span style={{ fontSize: "24px" }}>🛒</span>
+            {cartCount > 0 && (
+              <span
+                style={{
+                  backgroundColor: "rgba(255, 0, 0, 0.6)", 
+                  borderRadius: "50%",
+                  color: "white",
+                  padding: "3px 6px",
+                  fontSize: "12px",  
+                  position: "absolute",
+                  top: "-5px", 
+                  right: "-5px",
+                }}
+              >
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           {/* Hamburger Menu */}
@@ -50,6 +74,7 @@ const Header = () => {
             position: "absolute",
             top: "60px",
             right: "10px",
+            width: "200px", // Make sure the mobile menu has a defined width
           }}
         >
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
@@ -76,6 +101,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 
