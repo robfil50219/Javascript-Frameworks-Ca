@@ -5,6 +5,10 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [customerName, setCustomerName] = useState("");
+  const [address, setAddress] = useState("");
+  const [creditCard, setCreditCard] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Load cart items from localStorage on page load
@@ -33,6 +37,32 @@ const CartPage = () => {
     return cartItems.reduce((total, item) => total + item.discountedPrice * item.quantity, 0).toFixed(2);
   };
 
+  // Handle the checkout form submission
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate sending order data (you can replace this with actual API call)
+    const orderData = {
+      customerName,
+      address,
+      creditCard,
+      cartItems,
+      totalAmount: calculateTotal(),
+    };
+
+    console.log("Order placed successfully:", orderData);
+
+    // After order is placed, redirect or show success message
+    setTimeout(() => {
+      alert("Order placed successfully!");
+      setIsSubmitting(false);
+      // Reset the cart
+      localStorage.removeItem("cart");
+      setCartItems([]);
+    }, 2000);
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Your Cart</h1>
@@ -47,14 +77,27 @@ const CartPage = () => {
         ) : (
           <div>
             {cartItems.map((item) => (
-              <div key={item.id} style={{ display: "flex", justifyContent: "space-between", padding: "15px", borderBottom: "1px solid #ddd" }}>
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "15px",
+                  borderBottom: "1px solid #ddd",
+                }}
+              >
                 <div style={{ display: "flex", gap: "20px" }}>
-                  <img src={item.image?.url || "https://via.placeholder.com/100"} alt={item.title} style={{ width: "100px", height: "auto", borderRadius: "5px" }} />
+                  <img
+                    src={item.image?.url || "https://via.placeholder.com/100"}
+                    alt={item.title}
+                    style={{ width: "100px", height: "auto", borderRadius: "5px" }}
+                  />
                   <div>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                     <p>Price: ${item.discountedPrice.toFixed(2)}</p>
-                    <p>Quantity: 
+                    <p>
+                      Quantity:{" "}
                       <input
                         type="number"
                         value={item.quantity}
@@ -82,26 +125,73 @@ const CartPage = () => {
             ))}
             <div style={{ marginTop: "20px", textAlign: "right" }}>
               <h2>Total: ${calculateTotal()}</h2>
-              <Link to="/checkout">
-                <button
-                  style={{
-                    padding: "10px 20px",
-                    backgroundColor: "#00A0A0",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Proceed to Checkout
-                </button>
-              </Link>
             </div>
           </div>
         )}
       </div>
+
+      {/* Checkout Form */}
+      {cartItems.length > 0 && (
+        <div>
+          <h3>Billing Information</h3>
+          <form onSubmit={handleCheckout}>
+            <div style={{ marginBottom: "10px" }}>
+              <label htmlFor="customerName">Name</label>
+              <input
+                type="text"
+                id="customerName"
+                placeholder="Your Name"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                required
+                style={{ padding: "8px", width: "100%", marginTop: "5px" }}
+              />
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <label htmlFor="address">Address</label>
+              <input
+                type="text"
+                id="address"
+                placeholder="Your Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+                style={{ padding: "8px", width: "100%", marginTop: "5px" }}
+              />
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <label htmlFor="creditCard">Credit Card Number</label>
+              <input
+                type="text"
+                id="creditCard"
+                placeholder="Credit Card Number"
+                value={creditCard}
+                onChange={(e) => setCreditCard(e.target.value)}
+                required
+                style={{ padding: "8px", width: "100%", marginTop: "5px" }}
+              />
+            </div>
+            <button
+              type="submit"
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#00A0A0",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                marginTop: "20px",
+              }}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Processing..." : "Complete Purchase"}
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
 
 export default CartPage;
+
