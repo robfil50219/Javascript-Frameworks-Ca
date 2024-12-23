@@ -16,24 +16,53 @@ const Header = ({ setSearchQuery }) => {
   };
 
   return (
-    <header className="header">
-      <div className="header-container">
+    <header style={{ padding: "10px 20px", backgroundColor: "#00A0A0", position: "relative" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",  
+          width: "100%",
+        }}
+      >
         {/* Logo that links to the homepage */}
-        <Link to="/" className="logo">
-          <h1>ShopSphere</h1>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <h1 style={{ margin: 0, color: "white", flex: "none" }}>ShopSphere</h1>
         </Link>
 
-        <div className="header-actions">
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {/* Cart Icon */}
-          <Link to="/cart" className="cart-link">
-            <span className="cart-icon">🛒</span> 
+          <Link
+            to="/cart"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textDecoration: "none",
+              color: "white",
+              gap: "5px",
+            }}
+          >
+            <span style={{ fontSize: "24px" }}>🛒</span> 
             {cartCount > 0 && (
-              <span className="cart-count">{cartCount}</span>
+              <span
+                style={{
+                  backgroundColor: "red",
+                  borderRadius: "50%",
+                  color: "white",
+                  padding: "5px 10px",
+                  fontSize: "14px",
+                  position: "absolute",
+                  top: "-5px", 
+                  right: "-5px",
+                }}
+              >
+                {cartCount}
+              </span>
             )}
           </Link>
 
           {/* Hamburger Menu */}
-          <div onClick={toggleMenu} className="hamburger-menu">
+          <div onClick={toggleMenu} style={{ cursor: "pointer", fontSize: "24px", color: "white" }}>
             ☰
           </div>
         </div>
@@ -41,20 +70,30 @@ const Header = ({ setSearchQuery }) => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="mobile-menu">
-          <ul className="mobile-menu-list">
+        <nav
+          style={{
+            backgroundColor: "#0F4452",
+            padding: "10px",
+            marginTop: "10px",
+            borderRadius: "5px",
+            position: "absolute",
+            top: "60px",
+            right: "10px",
+          }}
+        >
+          <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
             <li>
-              <Link to="/" className="mobile-menu-item">
+              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/cart" className="mobile-menu-item">
+              <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
                 Cart
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="mobile-menu-item">
+              <Link to="/contact" style={{ color: "white", textDecoration: "none" }}>
                 Contact
               </Link>
             </li>
@@ -66,6 +105,11 @@ const Header = ({ setSearchQuery }) => {
 };
 
 export default Header;
+
+
+
+
+
 
 
 
