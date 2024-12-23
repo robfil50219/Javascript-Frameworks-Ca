@@ -99,6 +99,30 @@ html {
   background-color: #0F4452;
 }
 
+/* Cart Icon Styling */
+.cart-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  gap: 5px;
+}
+
+.cart-icon {
+  font-size: 24px;
+}
+
+.cart-count {
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
 /* Footer */
 footer {
   margin-top: auto;

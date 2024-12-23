@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";  
 
 const Header = ({ setSearchQuery }) => {
   const [search, setSearch] = useState("");
   const [cartCount, setCartCount] = useState(0); 
   const [menuOpen, setMenuOpen] = useState(false); 
+
+  // Load cart items from localStorage and update cart count
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalCartCount = savedCart.reduce((count, item) => count + item.quantity, 0);
+    setCartCount(totalCartCount);
+  }, []); // Runs once when the component is mounted
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -40,17 +47,18 @@ const Header = ({ setSearchQuery }) => {
               textDecoration: "none",
               color: "white",
               gap: "5px",
+              position: "relative",  
             }}
           >
-            <span style={{ fontSize: "24px" }}>🛒</span> 
+            <span style={{ fontSize: "24px" }}>🛒</span>
             {cartCount > 0 && (
               <span
                 style={{
-                  backgroundColor: "red",
+                  backgroundColor: "rgba(255, 0, 0, 0.6)", 
                   borderRadius: "50%",
                   color: "white",
-                  padding: "5px 10px",
-                  fontSize: "14px",
+                  padding: "3px 6px", 
+                  fontSize: "12px",  
                   position: "absolute",
                   top: "-5px", 
                   right: "-5px",
@@ -105,6 +113,9 @@ const Header = ({ setSearchQuery }) => {
 };
 
 export default Header;
+
+
+
 
 
 
