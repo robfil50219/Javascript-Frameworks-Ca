@@ -125,13 +125,48 @@ html {
 
 /* Footer */
 footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 20px;
   background-color: #0F4452;
+  padding: 20px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-top: auto;
   font-family: 'Roboto', sans-serif;
 }
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+footer a {
+  padding: 10px 20px;
+  background-color: white;
+  color: #0F4452;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+footer a:hover {
+  background-color: #00A0A0;
+  color: white;
+}
+
+footer .footer-content {
+  flex: 1;
+}
+
+footer .footer-link {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
 
 
 

@@ -19,29 +19,13 @@ const Layout = ({ children }) => {
       <main style={{ flexGrow: 1, padding: "20px" }}>{children}</main>
 
       {/* Footer */}
-      <footer
-        style={{
-          backgroundColor: "#0F4452",
-          padding: "10px",
-          color: "white",
-          textAlign: "center",
-          marginTop: "auto",
-        }}
-      >
-        <p>© 2024 ShopSphere</p>
-        <Link
-          to="/contact"
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "white",
-            color: "#0F4452",
-            textDecoration: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Contact Us
-        </Link>
-      </footer>
+      <footer>
+  <p>© 2024 ShopSphere</p>
+  <div className="footer-link">
+    <Link to="/contact">Contact Us</Link>
+  </div>
+</footer>
+
     </div>
   );
 };
