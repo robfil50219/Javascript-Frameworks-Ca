@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# ShopSphere - JavaScript Frameworks CA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+ShopSphere is an e-commerce platform built using React, aimed at providing a seamless shopping experience. It integrates several features, including product listing, cart functionality, checkout process, and a contact page. The website fetches product data from an external API and allows users to search and filter products, add items to the cart, and complete their purchases.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Home Page**: Displays a list of products, allowing users to browse through and search for items.
+- **Product Page**: Shows detailed information about a product when clicked.
+- **Cart**: Users can add products to the cart, view the items, change quantities, and proceed to checkout.
+- **Checkout**: A form to enter billing information and complete the order.
+- **Contact Page**: A simple form to get in touch with customer service.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React**: A JavaScript library for building user interfaces.
+- **React Router**: A library for handling routing and navigation.
+- **LocalStorage**: Used to persist the cart items across page reloads.
+- **CSS**: Custom CSS styles for the layout and design.
+- **External API**: Fetches product data from the Noroff API ([https://v2.api.noroff.dev/online-shop](https://v2.api.noroff.dev/online-shop)).
 
-### `npm test`
+## Folder Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+/public
+  /index.html
+/src
+  /components
+    - Header.jsx
+    - Layout.jsx
+    - Footer.jsx
+  /pages
+    - Homepage.jsx
+    - ProductPage.jsx
+    - CartPage.jsx
+    - CheckoutSuccessPage.jsx
+    - ContactPage.jsx
+  /App.js
+  /App.css
+  /index.js
+/assets
+  - logo.png
+/data
+  - products.json
+```
 
-### `npm run build`
+## Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get the project up and running, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/robfil50219/Javascript-Frameworks-Ca.git
+   cd Javascript-Frameworks-Ca
+   ```
 
-### `npm run eject`
+2. **Install dependencies**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Start the development server**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   The application should be available at `http://localhost:3000`.
 
-## Learn More
+## Development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is built using React and React Router. All the components are designed to be modular and reusable. Here's a brief description of the key components:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Header.jsx**:
+  Displays the logo, cart icon, and navigation menu. Handles routing using React Router.
 
-### Code Splitting
+- **Layout.jsx**:
+  A wrapper component that includes the Header, Footer, and dynamically loads the main content (children) of each page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **CartPage.jsx/CheckoutPage**:
+  -Displays the user's cart, allowing them to change item quantities, remove products, and proceed to checkout.
+  -A simple form that allows users to enter billing information and place an order.
 
-### Analyzing the Bundle Size
+- **CheckoutSuccessPage.jsx**:
+  Displays a success message after an order is placed, confirming the successful transaction.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Homepage.jsx**:
+  Displays a list of products, allowing users to filter and view product details.
 
-### Making a Progressive Web App
+- **ProductPage.jsx**:
+  Displays detailed information for each product, including an image, price, and description.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **ContactPage.jsx**:
+  A contact form allowing users to send a message to the customer support team.
 
-### Advanced Configuration
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **User Authentication**: Implement login and registration functionality for users to track their orders.
+- **Payment Gateway Integration**: Add payment gateway support to complete transactions securely.
+- **Order History**: Allow users to view past orders after logging in.
+- **Advanced Search Filters**: Add more filters for sorting products by price, category, etc.
+- **Dark Mode**: Implement dark mode for better accessibility.
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+We welcome contributions to improve the ShopSphere platform. Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
-### `npm run build` fails to minify
+To contribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+ShopSphere - 2024\
+Created by Robert Filep
