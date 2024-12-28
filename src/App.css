@@ -2,7 +2,7 @@
 body,
 html {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Default font */
+  font-family: 'Roboto', sans-serif;
   height: 100%;
 }
 
@@ -18,7 +18,7 @@ html {
   font-size: 2rem;
   font-weight: 600;
   color: #333;
-  font-family: 'Open Sans', sans-serif; /* Headings font */
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Search Bar Styles */
@@ -26,16 +26,16 @@ html {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .search-bar-input {
   padding: 8px 12px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 250px; 
+  width: 250px;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif; /* Ensuring search bar text uses the main font */
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Product Grid */
@@ -44,7 +44,7 @@ html {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  margin: 0 20px; /* Add some space on the sides */
+  margin: 0 20px;
 }
 
 .product-card {
@@ -52,32 +52,62 @@ html {
   padding: 10px;
   border-radius: 5px;
   width: 200px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding subtle shadow for better card appearance */
+  height: 350px; /* Ensures consistent height across cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  text-align: center;
+  position: relative; /* Ensure consistent positioning */
 }
 
 .product-card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Adding hover effect to cards */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .product-image {
   width: 100%;
-  height: auto;
+  height: 150px; /* Ensures images are uniform */
+  object-fit: cover;
   border-radius: 5px;
-  margin-bottom: 10px; /* Adds space between image and text */
+  margin-bottom: 10px;
 }
 
 .product-card h3 {
   font-size: 1.1rem;
   font-weight: 500;
-  font-family: 'Open Sans', sans-serif; /* Ensuring card titles use the headings font */
+  font-family: 'Open Sans', sans-serif;
+  margin: 10px 0;
 }
 
 .product-card p {
   font-size: 0.9rem;
   color: #555;
-  font-family: 'Roboto', sans-serif; /* Ensuring card description uses main font */
+  font-family: 'Roboto', sans-serif;
+  margin: 0 0 10px;
+}
+
+.product-card a {
+  margin-top: auto;
+  padding: 10px 15px;
+  background-color: #00A0A0;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.product-rating {
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: bold;
+  margin: 10px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.product-card a:hover {
+  background-color: #0F4452;
 }
 
 /* Load More / Show Less Button */
@@ -89,9 +119,9 @@ html {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif; /* Font for buttons */
+  font-family: 'Roboto', sans-serif;
 }
 
 .load-more-button:hover,
@@ -106,6 +136,7 @@ html {
   text-decoration: none;
   color: white;
   gap: 5px;
+  position: relative;
 }
 
 .cart-icon {
@@ -113,14 +144,14 @@ html {
 }
 
 .cart-count {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.8);
   border-radius: 50%;
   color: white;
-  padding: 5px 10px;
-  font-size: 14px;
+  padding: 3px 6px;
+  font-size: 12px;
   position: absolute;
   top: -5px;
-  right: -5px;
+  right: -10px;
 }
 
 /* Footer */
@@ -131,7 +162,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   margin-top: auto;
   font-family: 'Roboto', sans-serif;
 }
@@ -139,6 +169,7 @@ footer {
 footer p {
   margin: 0;
   font-size: 1rem;
+  text-align: left;
 }
 
 footer a {
@@ -147,9 +178,9 @@ footer a {
   color: #0F4452;
   text-decoration: none;
   border-radius: 5px;
-  margin-bottom: 10px;
   font-size: 1rem;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 footer a:hover {
@@ -157,15 +188,6 @@ footer a:hover {
   color: white;
 }
 
-footer .footer-content {
-  flex: 1;
-}
-
-footer .footer-link {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-}
 
 
 
