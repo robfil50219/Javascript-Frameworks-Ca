@@ -18,7 +18,7 @@ ShopSphere is an e-commerce platform built using React, aimed at providing a sea
 - **React Router**: A library for handling routing and navigation.
 - **LocalStorage**: Used to persist the cart items across page reloads.
 - **CSS**: Custom CSS styles for the layout and design.
-- **External API**: Fetches product data from the Noroff API ([https://v2.api.noroff.dev/online-shop](https://v2.api.noroff.dev/online-shop)).
+- **External API**: Fetches product data from the Noroff API ([https://v2.api.noroff.dev/online-shop]).
 
 ## Folder Structure
 
