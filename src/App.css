@@ -27,7 +27,7 @@ html {
 
 /* Logo default size for larger screens */
 .logo {
-  height: 100px;
+  height: 150px;
   object-fit: contain;
 }
 
