@@ -94,8 +94,6 @@ const Homepage = () => {
   ))}
 </div>
 
-
-
       {filteredProducts.length > currentPage * productsPerPage && (
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           <button onClick={loadMore} className="load-more-button">

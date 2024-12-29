@@ -47,7 +47,6 @@ const CartPage = () => {
       totalAmount: calculateTotal(),
     };
 
-    console.log("Order placed successfully:", orderData);
 
     setTimeout(() => {
       alert("Order placed successfully!");

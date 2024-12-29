@@ -2,27 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Productpage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [userRating, setUserRating] = useState(0); // User's rating
-  const [ratings, setRatings] = useState([]); // All ratings
+  const [userRating, setUserRating] = useState(0); 
+  const [ratings, setRatings] = useState([]); 
 
   useEffect(() => {
     const fetchProduct = async () => {
-      console.log("Fetching product with ID:", id); // Debug: Log the product ID
       try {
         const response = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch product with ID: ${id}`);
         }
         const data = await response.json();
-        console.log("Fetched Product:", data); // Debug: Log the fetched product
-        setProduct(data.data); // Extract the `data` property
-        setRatings(data.data?.reviews || []); // Set existing ratings (if any)
+        setProduct(data.data); 
+        setRatings(data.data?.reviews || []); 
       } catch (err) {
-        console.error("Error fetching product:", err.message); // Debug: Log error
+        console.error("Error fetching product:", err.message);
         setError(err.message);
       } finally {
         setLoading(false);
