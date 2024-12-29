@@ -49,20 +49,16 @@ const Productpage = () => {
     return (total / ratings.length).toFixed(1);
   };
 
-  // Handle adding product to cart
   const addToCart = (product) => {
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
     const productInCart = existingCart.find((item) => item.id === product.id);
 
     if (productInCart) {
-      // Update the quantity if product already in the cart
       productInCart.quantity += 1;
     } else {
-      // Add new product to cart
       existingCart.push({ ...product, quantity: 1 });
     }
 
-    // Save updated cart to localStorage
     localStorage.setItem("cart", JSON.stringify(existingCart));
     alert("Product added to cart!");
   };
@@ -75,11 +71,8 @@ const Productpage = () => {
     <div style={{ padding: "20px", textAlign: "center" }}>
       <h1>{product.title}</h1>
 
-      {/* Flexbox container for image and rating */}
       <div style={{ display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
-        
-        {/* Image Container */}
-        <div style={{ flex: "1", maxWidth: "400px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ flex: "1", maxWidth: "400px" }}>
           <img
             src={product.image?.url || "https://via.placeholder.com/300"}
             alt={product.image?.alt || product.title || "Product Image"}
@@ -92,10 +85,10 @@ const Productpage = () => {
           />
         </div>
 
-        {/* Product Details Section (including Ratings) */}
         <div style={{ flex: "1", maxWidth: "400px", textAlign: "left" }}>
           <p style={{ fontSize: "1.2rem", margin: "10px 0" }}>
-            Price: ${product.discountedPrice?.toFixed(2) || "N/A"}
+            Price: <span style={{ textDecoration: "line-through" }}>${product.price?.toFixed(2)}</span>{" "}
+            ${product.discountedPrice?.toFixed(2) || "N/A"}
           </p>
           {product.price !== product.discountedPrice && (
             <p style={{ fontSize: "1rem", color: "red" }}>
@@ -107,12 +100,9 @@ const Productpage = () => {
           )}
           <p>{product.description || "No description available."}</p>
 
-          {/* Buy Now Button */}
           <button
             onClick={() => addToCart(product)}
             style={{
-              display: "flex",
-              alignItems: "center",
               padding: "10px 20px",
               backgroundColor: "#00A0A0",
               color: "white",
@@ -123,16 +113,11 @@ const Productpage = () => {
               fontSize: "16px",
             }}
           >
-            <i
-              className="fas fa-shopping-cart" // FontAwesome cart icon
-              style={{ marginRight: "10px", fontSize: "18px" }}
-            ></i>
-            Buy Now
+            Add to Cart
           </button>
         </div>
       </div>
 
-      {/* Ratings Section */}
       <div style={{ marginTop: "20px" }}>
         <h2>Average Rating: {calculateAverageRating()}</h2>
         <form onSubmit={handleRatingSubmit} style={{ marginTop: "10px" }}>
@@ -167,7 +152,6 @@ const Productpage = () => {
         </form>
       </div>
 
-      {/* List of Ratings */}
       {ratings.length > 0 && (
         <div style={{ marginTop: "20px" }}>
           <h3>Customer Ratings:</h3>
@@ -185,6 +169,7 @@ const Productpage = () => {
 };
 
 export default Productpage;
+
 
 
 
