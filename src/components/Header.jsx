@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ setSearchQuery }) => {
+const Header = () => {
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null); 
+  const menuRef = useRef(null);
 
   // Load cart items from localStorage and update cart count
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalCartCount = savedCart.reduce((count, item) => count + item.quantity, 0);
     setCartCount(totalCartCount);
-  }, []); // Runs once when the component is mounted
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -34,7 +34,7 @@ const Header = ({ setSearchQuery }) => {
   return (
     <header className="header">
       <div className="header-content">
-        {/* Logo that links to the homepage */}
+        {/* Logo */}
         <Link to="/" className="logo-link">
           <img
             src={`${process.env.PUBLIC_URL}/Shopsphere-logo2.png`}
@@ -52,27 +52,25 @@ const Header = ({ setSearchQuery }) => {
               alignItems: "center",
               textDecoration: "none",
               color: "white",
-              gap: "5px",
               position: "relative",
             }}
           >
             <span style={{ fontSize: "24px" }}>🛒</span>
-            {cartCount > 0 && (
-              <span
-                style={{
-                  backgroundColor: "rgba(255, 0, 0, 0.6)",
-                  borderRadius: "50%",
-                  color: "white",
-                  padding: "3px 6px",
-                  fontSize: "12px",
-                  position: "absolute",
-                  top: "-5px",
-                  right: "-5px",
-                }}
-              >
-                {cartCount}
-              </span>
-            )}
+            <span
+              style={{
+                backgroundColor: "rgba(255, 0, 0, 0.6)",
+                borderRadius: "50%",
+                color: "white",
+                padding: "3px 6px",
+                fontSize: "12px",
+                position: "absolute",
+                top: "-5px",
+                right: "-10px",
+                opacity: cartCount === 0 ? 0.5 : 1, 
+              }}
+            >
+              {cartCount}
+            </span>
           </Link>
 
           {/* Hamburger Menu */}
@@ -123,6 +121,7 @@ const Header = ({ setSearchQuery }) => {
 };
 
 export default Header;
+
 
 
 
