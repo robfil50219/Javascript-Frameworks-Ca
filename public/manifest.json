@@ -3,12 +3,12 @@
   "name": "ShopSphere",
   "icons": [
     {
-      "src": "Shopshere-logo1.png",
+      "src": "Shopsphere-logo1.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "Shopshere-logo2.png",
+      "src": "Shopsphere-logo2.png",
       "sizes": "192x192",
       "type": "image/png"
     }

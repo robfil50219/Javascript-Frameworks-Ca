@@ -37,7 +37,7 @@ const Header = ({ setSearchQuery }) => {
         {/* Logo that links to the homepage */}
         <Link to="/" className="logo-link">
           <img
-            src={`${process.env.PUBLIC_URL}/Shopshere-logo2.png`}
+            src={`${process.env.PUBLIC_URL}/Shopsphere-logo2.png`}
             alt="ShopSphere Logo"
             className="logo"
           />
