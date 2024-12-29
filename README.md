@@ -1,4 +1,4 @@
-# ShopSphere - JavaScript Frameworks CA
+# ShopSphere - Robert Filep JavaScript Frameworks CA
 
 ## Overview
 
