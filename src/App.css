@@ -25,6 +25,20 @@ html {
   width: 100%;
 }
 
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff0000;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+
 /* Logo default size for larger screens */
 .logo {
   height: 150px;
@@ -84,14 +98,14 @@ html {
   padding: 10px;
   border-radius: 5px;
   width: 200px;
-  height: 350px; /* Ensures consistent height across cards */
+  height: 350px; 
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   text-align: center;
-  position: relative; /* Ensure consistent positioning */
+  position: relative; 
 }
 
 .product-card:hover {
@@ -100,7 +114,7 @@ html {
 
 .product-image {
   width: 100%;
-  height: 150px; /* Ensures images are uniform */
+  height: 150px; 
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 10px;

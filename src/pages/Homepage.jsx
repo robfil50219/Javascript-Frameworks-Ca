@@ -53,27 +53,36 @@ const Homepage = () => {
           className="search-bar-input"
         />
       </div>
-
       <div className="product-list">
-        {currentProducts.map((product) => (
-          <div key={product.id} className="product-card">
-            <img
-              src={product.image?.url}
-              alt={product.title}
-              className="product-image"
-            />
-            <h3>{product.title}</h3>
-            <p>Price: ${product.discountedPrice?.toFixed(2)}</p>
-            {/* Display Product Rating with Default */}
-            <p className="product-rating">
-              Rating: ⭐ {product.rating ? product.rating.toFixed(1) : "0"}
-            </p>
-            <Link to={`/product/${product.id}`} className="view-product-button">
-              View Product
-            </Link>
-          </div>
-        ))}
-      </div>
+  {currentProducts.map((product) => (
+    <div key={product.id} className="product-card">
+      {/* Show discount badge if discounted */}
+      {product.discountedPrice < product.price && (
+        <span className="discount-badge">
+          {`-${Math.round(
+            ((product.price - product.discountedPrice) / product.price) * 100
+          )}%`}
+        </span>
+      )}
+
+      <img
+        src={product.image?.url}
+        alt={product.title}
+        className="product-image"
+      />
+      <h3>{product.title}</h3>
+      <p>Price: ${product.price?.toFixed(2)}</p>
+      {/* Display Product Rating */}
+      <p className="product-rating">
+        Rating: ⭐ {product.rating ? product.rating.toFixed(1) : "0"}
+      </p>
+      <Link to={`/product/${product.id}`} className="view-product-button">
+        View Product
+      </Link>
+    </div>
+  ))}
+</div>
+
 
       {filteredProducts.length > currentPage * productsPerPage && (
         <div style={{ textAlign: "center", marginTop: "20px" }}>
