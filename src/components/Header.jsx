@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";  
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({ setSearchQuery }) => {
-  const [cartCount, setCartCount] = useState(0); 
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [cartCount, setCartCount] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null); // Create a ref for the menu
 
   // Load cart items from localStorage and update cart count
   useEffect(() => {
@@ -16,14 +17,31 @@ const Header = ({ setSearchQuery }) => {
     setMenuOpen((prev) => !prev);
   };
 
+  // Close the menu when clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <header style={{ padding: "10px 20px", backgroundColor: "#00A0A0", position: "relative" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
         {/* Logo that links to the homepage */}
         <Link to="/" style={{ textDecoration: "none" }}>
-  <h1 style={{ margin: 0, color: "white", fontSize: "2.5rem", fontWeight: "bold" }}>ShopSphere</h1>
-</Link>
-
+          <img
+            src={`${process.env.PUBLIC_URL}/Shopshere-logo2.png`}
+            alt="ShopSphere Logo"
+            style={{ height: "100px", objectFit: "contain" }}
+          />
+        </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {/* Cart Icon */}
@@ -35,20 +53,20 @@ const Header = ({ setSearchQuery }) => {
               textDecoration: "none",
               color: "white",
               gap: "5px",
-              position: "relative",  
+              position: "relative",
             }}
           >
             <span style={{ fontSize: "24px" }}>🛒</span>
             {cartCount > 0 && (
               <span
                 style={{
-                  backgroundColor: "rgba(255, 0, 0, 0.6)", 
+                  backgroundColor: "rgba(255, 0, 0, 0.6)",
                   borderRadius: "50%",
                   color: "white",
                   padding: "3px 6px",
-                  fontSize: "12px",  
+                  fontSize: "12px",
                   position: "absolute",
-                  top: "-5px", 
+                  top: "-5px",
                   right: "-5px",
                 }}
               >
@@ -67,24 +85,27 @@ const Header = ({ setSearchQuery }) => {
       {/* Mobile menu */}
       {menuOpen && (
         <nav
+          ref={menuRef}
           style={{
             backgroundColor: "#0F4452",
             padding: "10px",
             marginTop: "10px",
             borderRadius: "5px",
             position: "absolute",
-            top: "60px",
-            right: "10px",
-            width: "200px", 
+            top: "100%",
+            right: "0",
+            width: "200px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            zIndex: "1000",
           }}
         >
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-            <li>
+            <li style={{ marginBottom: "10px" }}>
               <Link to="/" style={{ color: "white", textDecoration: "none" }}>
                 Home
               </Link>
             </li>
-            <li>
+            <li style={{ marginBottom: "10px" }}>
               <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
                 Cart
               </Link>
@@ -102,6 +123,8 @@ const Header = ({ setSearchQuery }) => {
 };
 
 export default Header;
+
+
 
 
 
