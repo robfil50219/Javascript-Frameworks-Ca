@@ -71,7 +71,18 @@ const Homepage = () => {
         className="product-image"
       />
       <h3>{product.title}</h3>
-      <p>Price: ${product.price?.toFixed(2)}</p>
+      <p>
+        {product.discountedPrice < product.price ? (
+          <>
+            <span className="original-price">${product.price?.toFixed(2)}</span>{" "}
+            <span className="discounted-price">
+              ${product.discountedPrice?.toFixed(2)}
+            </span>
+          </>
+        ) : (
+          <span>${product.price?.toFixed(2)}</span>
+        )}
+      </p>
       {/* Display Product Rating */}
       <p className="product-rating">
         Rating: ⭐ {product.rating ? product.rating.toFixed(1) : "0"}
@@ -82,6 +93,7 @@ const Homepage = () => {
     </div>
   ))}
 </div>
+
 
 
       {filteredProducts.length > currentPage * productsPerPage && (

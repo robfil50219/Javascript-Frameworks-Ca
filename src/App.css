@@ -151,7 +151,18 @@ html {
   margin: 10px 0;
   font-family: 'Roboto', sans-serif;
 }
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
 
+.discounted-price {
+  color: #00a0a0;
+  font-weight: bold;
+  font-size: 1rem;
+}
 .product-card a:hover {
   background-color: #0F4452;
 }
