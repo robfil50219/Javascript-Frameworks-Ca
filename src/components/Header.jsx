@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = ({ setSearchQuery }) => {
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null); // Create a ref for the menu
+  const menuRef = useRef(null); 
 
   // Load cart items from localStorage and update cart count
   useEffect(() => {
