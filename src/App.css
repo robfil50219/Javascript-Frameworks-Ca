@@ -11,6 +11,38 @@ html {
   flex-direction: column;
   min-height: 100vh;
 }
+/* Header styles */
+.header {
+  padding: 10px 20px;
+  background-color: #00a0a0;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo default size for larger screens */
+.logo {
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Responsive logo size for smaller screens */
+@media (max-width: 768px) {
+  .logo {
+    height: 60px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 40px; 
+  }
+}
 
 .slogan {
   text-align: center;

@@ -32,14 +32,14 @@ const Header = ({ setSearchQuery }) => {
   }, []);
 
   return (
-    <header style={{ padding: "10px 20px", backgroundColor: "#00A0A0", position: "relative" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+    <header className="header">
+      <div className="header-content">
         {/* Logo that links to the homepage */}
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" className="logo-link">
           <img
             src={`${process.env.PUBLIC_URL}/Shopshere-logo2.png`}
             alt="ShopSphere Logo"
-            style={{ height: "100px", objectFit: "contain" }}
+            className="logo"
           />
         </Link>
 
