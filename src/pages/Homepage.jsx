@@ -38,6 +38,10 @@ const Homepage = () => {
         return (b.rating || 0) - (a.rating || 0);
       } else if (sortOption === "rating-asc") {
         return (a.rating || 0) - (b.rating || 0);
+      } else if (sortOption === "discount") {
+        const discountA = a.price - a.discountedPrice;
+        const discountB = b.price - b.discountedPrice;
+        return discountB - discountA; // Sort by largest discount first
       }
       return 0; // Default order (no sorting)
     });
@@ -79,6 +83,7 @@ const Homepage = () => {
           <option value="price-desc">Price: High to Low</option>
           <option value="rating-desc">Highest Rating</option>
           <option value="rating-asc">Lowest Rating</option>
+          <option value="discount">Largest Discount</option>
         </select>
       </div>
 
@@ -144,6 +149,7 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
 
 
 
